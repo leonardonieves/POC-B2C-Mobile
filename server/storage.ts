@@ -52,14 +52,133 @@ export class MemStorage implements IStorage {
   }
 
   private seedData() {
+    const school1Id = randomUUID();
     const school1: School = {
-      id: randomUUID(),
+      id: school1Id,
       name: "Starfield Academy",
       code: "HEM1234",
       type: "Francophone",
       level: "Secondary",
     };
     this.schools.set(school1.id, school1);
+
+    const school2Id = randomUUID();
+    const school2: School = {
+      id: school2Id,
+      name: "Greenfield International School",
+      code: "HEM5678",
+      type: "Anglophone",
+      level: "Primary",
+    };
+    this.schools.set(school2.id, school2);
+
+    const school3Id = randomUUID();
+    const school3: School = {
+      id: school3Id,
+      name: "Excellence Academy",
+      code: "HEM9999",
+      type: "Bilingual",
+      level: "Secondary",
+    };
+    this.schools.set(school3.id, school3);
+
+    const user1Id = randomUUID();
+    const testUser1: User = {
+      id: user1Id,
+      role: "Parent",
+      fullName: "Chantal Fobi",
+      phoneNumber: "+237698024135",
+      email: "chantal.fobi@example.com",
+      password: "password123",
+      verified: true,
+      currentChild: "Amara Fobi",
+    };
+    this.users.set(user1Id, testUser1);
+
+    const user2Id = randomUUID();
+    const testUser2: User = {
+      id: user2Id,
+      role: "Parent",
+      fullName: "Jean Kouam",
+      phoneNumber: "+237677123456",
+      email: "jean.kouam@example.com",
+      password: "test1234",
+      verified: true,
+      currentChild: "Marie Kouam",
+    };
+    this.users.set(user2Id, testUser2);
+
+    const app1Id = randomUUID();
+    const application1: Application = {
+      id: app1Id,
+      userId: user1Id,
+      schoolId: school1Id,
+      status: "Pending",
+      createdAt: new Date(),
+    };
+    this.applications.set(app1Id, application1);
+
+    const hw1Id = randomUUID();
+    const homework1: Homework = {
+      id: hw1Id,
+      userId: user1Id,
+      title: "Exercise 1 – Textbook, page 60",
+      dueDate: "Tomorrow",
+      completed: false,
+    };
+    this.homework.set(hw1Id, homework1);
+
+    const hw2Id = randomUUID();
+    const homework2: Homework = {
+      id: hw2Id,
+      userId: user1Id,
+      title: "Exercise 1 – Textbook, page 80",
+      dueDate: "Tomorrow",
+      completed: false,
+    };
+    this.homework.set(hw2Id, homework2);
+
+    const payment1Id = randomUUID();
+    const payment1: Payment = {
+      id: payment1Id,
+      userId: user1Id,
+      title: "Transport",
+      amount: "50 XAF",
+      studentName: "Amara Fobi",
+      dueDate: "Oct, 2025",
+      status: "Pending",
+    };
+    this.payments.set(payment1Id, payment1);
+
+    const payment2Id = randomUUID();
+    const payment2: Payment = {
+      id: payment2Id,
+      userId: user2Id,
+      title: "School Fees",
+      amount: "150,000 XAF",
+      studentName: "Marie Kouam",
+      dueDate: "Nov, 2025",
+      status: "Pending",
+    };
+    this.payments.set(payment2Id, payment2);
+
+    console.log("\n🎭 MOCK DATA LOADED - Test Credentials:");
+    console.log("=====================================");
+    console.log("Test User 1:");
+    console.log("  Phone: +237698024135");
+    console.log("  Password: password123");
+    console.log("  Name: Chantal Fobi");
+    console.log("\nTest User 2:");
+    console.log("  Phone: +237677123456");
+    console.log("  Password: test1234");
+    console.log("  Name: Jean Kouam");
+    console.log("\nSchool Codes:");
+    console.log("  HEM1234 - Starfield Academy");
+    console.log("  HEM5678 - Greenfield International School");
+    console.log("  HEM9999 - Excellence Academy");
+    console.log("\nVerification Code (for new accounts):");
+    console.log("  123456");
+    console.log("=====================================\n");
   }
 
   async getUser(id: string): Promise<User | undefined> {
