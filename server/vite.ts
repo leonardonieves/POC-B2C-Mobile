@@ -32,8 +32,10 @@ export async function setupVite(app: Express, server: Server) {
     customLogger: {
       ...viteLogger,
       error: (msg, options) => {
+        // Log the error but do not exit the process immediately.
+        // Exiting here makes it hard to see the original stack trace that
+        // express/vite might surface; let the error propagate normally.
         viteLogger.error(msg, options);
-        process.exit(1);
       },
     },
     server: serverOptions,
